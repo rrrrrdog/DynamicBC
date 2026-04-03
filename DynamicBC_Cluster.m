@@ -7,7 +7,7 @@ D.fig = figure('Name','K-means Clustering (v3.0)',...
     'unit','normalized',...
     'color',[0.95 0.95 0.95],...
     'position',[0.25 0.2 0.5 0.2]);
-movegui(D.fig,'center');
+movegui(D.fig,'center'); #GUI窗口
 
 pos_Data = [0.01 0.05 0.65 0.9];
 pos_Clustering = [0.68 0.05 0.31 0.9];
@@ -25,7 +25,7 @@ pos_data_select = [0.4 0.27 0.55 0.2];
 pos_out_str = [0.05 0.05 0.35 0.2];
 pos_out_select = [0.4 0.05 0.55 0.2];
 
-%% FC/GC selection
+%% FC/GC selection  #选择FC或者GC
 D.FG = uicontrol('Parent',D.data_info,...
                 'style','popup',...
                 'units','norm',...
@@ -123,7 +123,7 @@ D.ed_outdir = uicontrol(D.data_info,...
                     'fontunits', 'normalized', 'fontsize',0.5,...
                     'string','not selected');              
               
-%% Cluster methods selection
+%% Cluster methods selection #聚类面板
 pos_CMe = [0.05 0.75 0.9 0.2] ;
 pos_clusize_str = [0.05 0.5 0.6 0.2] ;
 pos_clusize_input = [0.65 0.5 0.3 0.2] ;
@@ -138,7 +138,7 @@ D.CMe = uicontrol('Parent',D.Clustering,...
                 'style','popup',...
                 'units','norm',...
                 'position',pos_CMe,...
-                'string',{'sqeuclidean','correlation','cityblock','Distance Measures'},...               
+                'string',{'sqeuclidean','correlation','cityblock','Distance Measures'},...  #距离度量选择             
                 'fontunits', 'normalized', 'fontsize',0.5,...                
                 'foregroundcolor',[.1 .1 .1],...
                 'TooltipString','Choose one of them (1~3)',...
@@ -188,7 +188,7 @@ set(D.pb_plot,'callback',{@wgr_plot_call,D});
 
 end
 
-function []=wgr_FCGC_select(varargin)
+function []=wgr_FCGC_select(varargin)  #根据 FC/GC 选择自动切换变量名
 D = varargin{3};  % Get structure.
 FG = get(D.FG,'val');
 if FG==1
@@ -198,7 +198,7 @@ else
 end
 end
 
-function wgr_estimatClu_call(varargin)
+function wgr_estimatClu_call(varargin)  #将 Cluster # 按钮切换为下拉菜单，用于选择 固定/估计聚类数。
 D = varargin{3};  % Get structure.
 sty = get(D.tx_fs,'style');
 switch sty
