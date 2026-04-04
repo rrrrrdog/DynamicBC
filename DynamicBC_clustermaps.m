@@ -22,7 +22,7 @@ else
     filter_str3 = ['_',filter_str2];
 end
 dirtemp = fullfile(subjdir,SubFold(1).name);
-[v] = wgr_read_dir_NIFTI(dirtemp,filter_str);
+[v] = wgr_read_dir_NIFTI(dirtemp,filter_str); #数据读取与数据预处理
 vm = spm_vol(Maskimg);
 if any(vm(1).dim-v(1).dim)
     fprintf('Data DIM:[%d,%d,%d]\n',v(1).dim)
@@ -132,7 +132,7 @@ for inum_clusters = num_clustersall
         C = Cest{inum_clusters};
     end
     [IDXall, Call, SUMDall, Dall] = kmeans(DATA', inum_clusters, 'distance', dmethod, 'Replicates', 1, 'Display', 'iter', 'empty', 'drop', 'Start', C);
-    if ~isempty(filter_str2)
+    if ~isempty(filter_str2) #对全部体素数据DATA进行聚类
         save_dir = fullfile(outputd,[dmethod,'_Kmeans_',num2str(inum_clusters),'_',filter_str2]);
     else
         save_dir = fullfile(outputd,[dmethod,'_Kmeans_',num2str(inum_clusters)]);
@@ -287,7 +287,7 @@ function [imax] = DynamicBC_extrema(x)
 %   See also EXTREMA2, MAX, MIN
 
 %   Written by
-%   Lic. on Physics Carlos Adri�n Vargas Aguilera
+%   Lic. on Physics Carlos Adrián Vargas Aguilera
 %   Physical Oceanography MS candidate
 %   UNIVERSIDAD DE GUADALAJARA 
 %   Mexico, 2004
@@ -407,5 +407,5 @@ imax = reshape(imax,size(xmax));
 % imin = imin(inmin);
 
 
-% Carlos Adri�n Vargas Aguilera. nubeobscura@hotmail.com
+% Carlos Adrián Vargas Aguilera. nubeobscura@hotmail.com
 end
